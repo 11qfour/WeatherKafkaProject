@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 public class WeatherProducer {
     private static final String TOPIC ="weather-topic";
     private final KafkaTemplate<String, WeatherData> kafkaTemplate;
-    private final KafkaTemplate<String, String> kafkaTemplate2;
     private final WeatherGenerator weatherGenerator=new WeatherGenerator();
     public void writeMessage() {
-        kafkaTemplate2.send("weather-topic", "test message");
         WeatherData data = new WeatherData(
                 weatherGenerator.randomLocation(),
                 weatherGenerator.randomCondition(),
